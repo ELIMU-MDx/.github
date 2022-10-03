@@ -72,10 +72,6 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-      - name: Setup private repository access
-        run: |
-          composer config --global http-basic.www.setasign.com ${{ secrets.SETASIGN_USER }} ${{ secrets.SETASIGN_PASSWORD }}
-          composer config --global http-basic.satis.spatie.be ${{ secrets.SATIS_SPATIE_USER }} ${{ secrets.SATIS_SPATIE_PASSWORD }}
       - name: Get composer cache directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
