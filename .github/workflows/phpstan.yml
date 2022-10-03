@@ -43,4 +43,4 @@ jobs:
         run: php artisan key:generate
 
       - name: Run PHPStan
-        run: './vendor/bin/phpstan --error-format=githubname: PHPStan'
+        run: './vendor/bin/phpstan --error-format=github'
