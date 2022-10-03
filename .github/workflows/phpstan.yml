@@ -1,19 +1,19 @@
 name: PHPStan
 
 on:
-  workflow_dispatch:
-  push:
-    paths:
-      - '**.php'
-      - 'phpstan.neon.dist'
-      - 'phpstan-baseline.neon'
+  workflow_call:
+    inputs:
+      php:
+        default: "8.1"
+        type: string
+        required: false
 
 jobs:
   phpstan:
     #  skip test for ci commits
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
 
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     name: phpstan
 
@@ -33,7 +33,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: ${{ inputs.php }}
           coverage: none
 
       - name: Install composer dependencies
